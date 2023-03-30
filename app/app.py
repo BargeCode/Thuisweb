@@ -24,6 +24,7 @@ class Gebruikers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), nullable=False, unique=True)
+    favo_kl = db.Column(db.String(120))
     dates = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -33,6 +34,7 @@ class Gebruikers(db.Model):
 class UserForm(FlaskForm):
     name = StringField("Naam", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
+    favo_kl = StringField("Favoriete kleur")
     submit = SubmitField("Opslaan")
 
     # Ask-name page
@@ -54,12 +56,17 @@ def add_user():
     if form.validate_on_submit():
         user = Gebruikers.query.filter_by(email=form.email.data).first()
         if user is None:
-            user = Gebruikers(name=form.name.data, email=form.email.data)
+            user = Gebruikers(
+                name=form.name.data,
+                email=form.email.data,
+                favo_kl=form.favo_kl.data
+            )
             db.session.add(user)
             db.session.commit()
         name = form.name.data
         form.name.data = ''
         form.email.data = ''
+        form.favo_kl.data = ''
         flash("Gebruiker toegevoegd")
     gebruikers = Gebruikers.query.order_by(Gebruikers.dates)
     return render_template(
@@ -77,6 +84,7 @@ def update(id):
     if request.method == "POST":
         name_to_update.name = request.form['name']
         name_to_update.email = request.form['email']
+        name_to_update.favo_kl = request.form['favo_kl']
         try:
             db.session.commit()
             flash("Update succes!")
