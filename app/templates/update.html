@@ -1,0 +1,90 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Sluiten"></button>
+    </div>
+{% endfor %}
+
+
+{% if name %}
+    <h1>
+        Update gebruiker.
+    </h1>
+    <br/>
+    <table class="table table-hover table-bordered">
+        {% for gebruiker in gebruikers %}
+            <tr>
+                <td>
+                    {{ gebruiker.id }} 
+                    - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - {{ gebruiker.email }}
+                    - {{ gebruiker.favo_kl }}
+                    - <a href="{{ url_for('delete', id=gebruiker.id)}}"> Del </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h1>
+        Update gebruiker.
+    </h1>
+    <br/>
+    <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+        <form action="/update/{{ name_to_update.id }}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.name.label(
+                class="form-label"
+            ) }}
+            {{ form.name(
+                class="form-control border-success"
+            ) }}
+            <br/>
+            {{ form.email.label(
+                class="form-label"
+            ) }}
+            {{ form.email(
+                class="form-control border-success"
+            ) }}
+            <br/>
+            {{ form.favo_kl.label(
+                class="form-label"
+            ) }}
+            {{ form.favo_kl(
+                class="form-control border-success"
+            ) }}
+            <br/>
+            {{ form.password_hash.label(
+                class="form-label"
+            ) }}
+            {{ form.password_hash(
+                class="form-control border-success"
+            ) }}
+            <br/>
+            {{ form.password_hash2.label(
+                class="form-label"
+            ) }}
+            {{ form.password_hash2(
+                class="form-control border-success"
+            ) }}
+            <br/>
+            {{ form.submit(
+                class="btn btn-success"
+            ) }}
+            <a href="{{ url_for('delete', id=id)}}" class="btn btn-danger"> 
+                Verwijderen 
+            </a>
+
+
+        </form>
+    </div>
+
+    <br/><br/><br/>
+
+{% endif %}
+ 
+{% endblock %}
