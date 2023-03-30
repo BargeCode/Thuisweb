@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    ports:
+      - 3000:5000
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      - FLASK_APP=app/app.py
+
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - Gebruikers-mysql-data:/var/lib/mysql
+      - ./dump:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: geheim
+      MYSQL_DATABASE: gebruikers
+
+volumes:
+  Gebruikers-mysql-data:
