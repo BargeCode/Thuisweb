@@ -1,9 +1,11 @@
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
+from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms.validators import DataRequired, equal_to, Length
 from flask import Flask, render_template, flash, request
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from datetime import datetime
+
 
 # Create a flask instance
 app = Flask(__name__)
@@ -26,6 +28,18 @@ class Gebruikers(db.Model):
     email = db.Column(db.String(120), nullable=False, unique=True)
     favo_kl = db.Column(db.String(120))
     dates = db.Column(db.DateTime, default=datetime.utcnow)
+    password_hash = db.Column(db.String(128))
+    
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable attribute')
+    
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return '<Name %r>' % self.name
@@ -35,13 +49,22 @@ class UserForm(FlaskForm):
     name = StringField("Naam", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
     favo_kl = StringField("Favoriete kleur")
-    submit = SubmitField("Opslaan")
+    password_hash = PasswordField(
+        "Wachtwoord",
+        validators=[DataRequired(),
+                    equal_to('password_hash2',
+                             message='Wachtwoorden moeten overeenkomen!')])
+    password_hash2 = PasswordField("Herhaal wachtwoord", validators=[DataRequired()])
+    submit = SubmitField("Opslaan") 
 
     # Ask-name page
 class NamerForm(FlaskForm):
     name = StringField("Naam", validators=[DataRequired()])
     submit = SubmitField("Verstuur")
-
+class PasswordForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired()])
+    password_hash = PasswordField("Wachtwoord", validators=[DataRequired()])
+    submit = SubmitField("Verstuur")
 
 # index route
 @app.route('/index')
@@ -56,10 +79,12 @@ def add_user():
     if form.validate_on_submit():
         user = Gebruikers.query.filter_by(email=form.email.data).first()
         if user is None:
+            hashed_pw = generate_password_hash(form.password_hash.data, "sha256")
             user = Gebruikers(
                 name=form.name.data,
                 email=form.email.data,
-                favo_kl=form.favo_kl.data
+                favo_kl=form.favo_kl.data,
+                password_hash=hashed_pw
             )
             db.session.add(user)
             db.session.commit()
@@ -67,6 +92,8 @@ def add_user():
         form.name.data = ''
         form.email.data = ''
         form.favo_kl.data = ''
+        form.password_hash.data = ''
+        form.password_hash2.data = ''
         flash("Gebruiker toegevoegd")
     gebruikers = Gebruikers.query.order_by(Gebruikers.dates)
     return render_template(
@@ -155,6 +182,34 @@ def name():
         name = name,
         form = form)
 
+# test pw route
+@app.route('/test_pw', methods=['GET', 'POST'])
+def test_pw():
+    email = None
+    password = None
+    pw_to_check = None
+    passed = None
+    form = PasswordForm()
+    
+    # Form validation
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password_hash.data
+        form.email.data = ''
+        form.password_hash.data = ''
+        user_to_check = Gebruikers.query.filter_by(email=email).first
+        passed = check_password_hash(pw_to_check.password_hash, password)
+
+
+
+    return render_template(
+        "test_pw.html",
+        email = email,
+        password = password,
+        user_to_check=user_to_check,
+        form = form,
+        passed = passed
+    )
 
 
 # error pages #
