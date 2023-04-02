@@ -20,8 +20,9 @@
     <h2>
         Naam: {{ user_to_check.name }} <br/>
         Email: {{ user_to_check.email }} <br/>
-        WW: {{ user_to_check.password_hash }} <br/>
+        Hash: {{ user_to_check.pw_hash }} <br/>
         Passed: {{ passed }}
+        {{ user_to_check }}
     </h2>   
     <br/>
 {% else %}
@@ -38,10 +39,10 @@
             class="form-control"
         ) }}
         <br/>
-        {{ form.password_hash.label(
+        {{ form.pw_hash.label(
             class="form-label"
         ) }}
-        {{ form.password_hash(
+        {{ form.pw_hash(
             class="form-control"
         ) }}
         <br/>

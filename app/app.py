@@ -28,7 +28,7 @@ class Gebruikers(db.Model):
     email = db.Column(db.String(120), nullable=False, unique=True)
     favo_kl = db.Column(db.String(120))
     dates = db.Column(db.DateTime, default=datetime.utcnow)
-    password_hash = db.Column(db.String(128))
+    pw_hash = db.Column(db.String(128))
     
     @property
     def password(self):
@@ -49,12 +49,12 @@ class UserForm(FlaskForm):
     name = StringField("Naam", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
     favo_kl = StringField("Favoriete kleur")
-    password_hash = PasswordField(
+    pw_hash = PasswordField(
         "Wachtwoord",
         validators=[DataRequired(),
-                    equal_to('password_hash2',
+                    equal_to('pw_hash2',
                              message='Wachtwoorden moeten overeenkomen!')])
-    password_hash2 = PasswordField("Herhaal wachtwoord", validators=[DataRequired()])
+    pw_hash2 = PasswordField("Herhaal wachtwoord", validators=[DataRequired()])
     submit = SubmitField("Opslaan") 
 
     # Ask-name page
@@ -63,7 +63,7 @@ class NamerForm(FlaskForm):
     submit = SubmitField("Verstuur")
 class PasswordForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
-    password_hash = PasswordField("Wachtwoord", validators=[DataRequired()])
+    pw_hash = PasswordField("Wachtwoord", validators=[DataRequired()])
     submit = SubmitField("Verstuur")
 
 # index route
@@ -79,12 +79,12 @@ def add_user():
     if form.validate_on_submit():
         user = Gebruikers.query.filter_by(email=form.email.data).first()
         if user is None:
-            hashed_pw = generate_password_hash(form.password_hash.data, "sha256")
+            hashed_pw = generate_password_hash(form.pw_hash.data, "sha256")
             user = Gebruikers(
                 name=form.name.data,
                 email=form.email.data,
                 favo_kl=form.favo_kl.data,
-                password_hash=hashed_pw
+                pw_hash=hashed_pw
             )
             db.session.add(user)
             db.session.commit()
@@ -92,8 +92,8 @@ def add_user():
         form.name.data = ''
         form.email.data = ''
         form.favo_kl.data = ''
-        form.password_hash.data = ''
-        form.password_hash2.data = ''
+        form.pw_hash.data = ''
+        form.pw_hash2.data = ''
         flash("Gebruiker toegevoegd")
     gebruikers = Gebruikers.query.order_by(Gebruikers.dates)
     return render_template(
@@ -187,18 +187,18 @@ def name():
 def test_pw():
     email = None
     password = None
-    pw_to_check = None
+    user_to_check = None
     passed = None
     form = PasswordForm()
     
     # Form validation
     if form.validate_on_submit():
         email = form.email.data
-        password = form.password_hash.data
+        password = form.pw_hash.data
         form.email.data = ''
-        form.password_hash.data = ''
-        user_to_check = Gebruikers.query.filter_by(email=email).first
-        passed = check_password_hash(pw_to_check.password_hash, password)
+        form.pw_hash.data = ''
+        user_to_check = Gebruikers.query.filter_by(email=email).first()
+        passed = check_password_hash(pwhash=user_to_check.pw_hash, password=password)
 
 
 

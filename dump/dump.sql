@@ -4,7 +4,7 @@ CREATE TABLE gebruikers (
     email varchar(120) NOT NULL,
     favo_kl varchar(120),
     dates datetime,
-    password_hash varchar(244),
+    pw_hash varchar(244),
     PRIMARY KEY (id),
     UNIQUE (email)
 )
