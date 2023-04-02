@@ -196,9 +196,15 @@ def test_pw():
         email = form.email.data
         password = form.pw_hash.data
         form.email.data = ''
+<<<<<<< HEAD
         form.pw_hash.data = ''
         user_to_check = Gebruikers.query.filter_by(email=email).first()
         passed = check_password_hash(pwhash=user_to_check.pw_hash, password=password)
+=======
+        form.password_hash.data = ''
+        pw_to_check = Gebruikers.query.filter_by(email=email).first
+        passed = check_password_hash(pw_to_check.password_hash, password)
+>>>>>>> 08471d41d94205daff834f959869edddfb7b03d4
 
 
 
@@ -206,7 +212,7 @@ def test_pw():
         "test_pw.html",
         email = email,
         password = password,
-        user_to_check=user_to_check,
+        pw_to_check = pw_to_check,
         form = form,
         passed = passed
     )
