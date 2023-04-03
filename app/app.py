@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import DataRequired, equal_to, Length
 from flask import Flask, render_template, flash, request
 from flask_sqlalchemy import SQLAlchemy
+from wtforms.widgets import TextArea
 from datetime import datetime, date
 from flask_wtf import FlaskForm
 
@@ -22,7 +23,7 @@ db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = "Avada kadabra"
 
 # Classes #
-    # Database
+# Database
 class Gebruikers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
@@ -46,6 +47,14 @@ class Gebruikers(db.Model):
         return '<Name %r>' % self.name
 
     # Ask user details page
+class Posts(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    content = db.Column(db.Text)
+    author = db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    slug = db.Column(db.String(255))
+# Forms
 class UserForm(FlaskForm):
     name = StringField("Naam", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
@@ -66,12 +75,18 @@ class PasswordForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
     pw_hash = PasswordField("Wachtwoord", validators=[DataRequired()])
     submit = SubmitField("Verstuur")
+class PostForm(FlaskForm):
+    title = StringField("Title", validators=[DataRequired()])
+    content = StringField("Content", validators=[DataRequired()], widget=TextArea())
+    author = StringField("Author", validators=[DataRequired()])
+    slug = StringField("Slug", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 
 # JSON route
 @app.route('/date')
 def get_current_date():
     return {'Date': date.today()}
-
 
 # index route
 @app.route('/index')
@@ -217,6 +232,28 @@ def test_pw():
         form = form,
         passed = passed
     )
+
+# Add Post Route
+@app.route('/add-post', methods=['GET', 'POST'])
+def add_post():
+    form = PostForm()
+
+    if form.validate_on_submit():
+        post = Posts(
+            title = form.title.data,
+            content = form.content.data,
+            author = form.author.data,
+            slug = form.slug.data
+        )
+        form.title.data = ''
+        form.content.data = ''
+        form.author.data = ''
+        form.slug.data = ''
+        db.session.add(post)
+        db.session.commit()
+        flash('Posted!')
+
+    return render_template("add_post.html", form = form)
 
 
 # error pages #

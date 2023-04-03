@@ -7,4 +7,12 @@ CREATE TABLE gebruikers (
     pw_hash varchar(244),
     PRIMARY KEY (id),
     UNIQUE (email)
-)
+);
+CREATE TABLE posts (
+    id int NOT NULL AUTO_INCREMENT,
+    author varchar(200) NOT NULL,
+    title varchar(200) NOT NULL,
+    content text() NOT NULL,
+    slug varchar(255) NOT NULL,
+    date_posted datetime NOT NULL
+);
