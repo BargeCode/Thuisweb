@@ -2,7 +2,8 @@
 
 ## summary
 
-The website for your home network. im following a tutorial on youtube called Flask Friday with john elder at codemy.com. (yes the guy looks a lot like the guy from breaking bad.)  
+The website for your home network. im following a tutorial on youtube called Flask Friday with John Elder at 
+codemy.com. (yes the guy looks a lot like the guy from breaking bad.)  
 
 ---
 
@@ -11,7 +12,7 @@ The website for your home network. im following a tutorial on youtube called Fla
 ### Technical:
 
 - App runs in a docker container.
-- MySQL db runs in a docker container.
+- MySQL db runs 1 database `Gebruikers` with these tables: `gebruikers` and `posts` in a docker container.
 - Both containers are connected.
 
 ### Functionality:
@@ -22,6 +23,7 @@ you can:
 - Edit an user.
 - Delete an user.
 - Verify a password.
+- Leave a blog- sort of - post.
 
 ---
 
