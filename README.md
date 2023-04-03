@@ -1,26 +1,41 @@
 # Thuisweb
 
-## Inleiding
-De website voor thuis. Ik volg Flask Friday van Codemy.com op youtube terwijl ik deze flask-app bouw. Dit is mijn versie/variant er op.
+## summary
 
-## Hoe ver zijn we?
-Op dit moment is het mogelijk om:
-- De app in zijn eigen container te laten starten.
-- De MySQL db te starten in zijn eigen container.
-- De app en db met elkaar te verbinden.
-- een gebruiker toe te voegen.
-- een gebruiker aan te passen.
-- een gebruiker te verwijderen.
-- een wachtwoord aan een gebruiker te hangen, en vervolgens via opgegeven email, het wachtwoord te verifieren. 
+The website for your home network. im following a tutorial on youtube called Flask Friday with john elder at codemy.com. (yes the guy looks a lot like the guy from breaking bad.)  
 
-## Hoe installeer ik dit?
-Het enige wat je nodig heb is Git om de app te downloaden en docker om de app te installeren en te starten.
+---
 
-Kopieer en plak het volgende in terminal als je Git en Docker geinstalleerd heb. 
+## Hows progress?
 
+### Technical:
+
+- App runs in a docker container.
+- MySQL db runs in a docker container.
+- Both containers are connected.
+
+### Functionality:
+
+you can: 
+
+- Add an user's name, email, favorite color, and password (is stored hashed).
+- Edit an user.
+- Delete an user.
+- Verify a password.
+
+---
+
+## How to install?
+The only thing you'll need is `Git` and `Docker`. Thos apps will install a clean version of the app in 2 simple steps once those apps are installed.
+
+1. install by typing in terminal:
 ```bash
 git clone https://github.com/BargeCode/Thuisweb.git && docker compose up -d
 ```
 
-Open een webbrowser en ga naar:
-`localhost:3000/index.html` en kijk gerust even rond.
+2. Open this webpage in your internet explorer when command line says [2/2] are running:
+[localhost:3000/index.html](localhost:3000/index.html) and take a look around
+
+
+---
+
