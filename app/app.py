@@ -3,8 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import DataRequired, equal_to, Length
 from flask import Flask, render_template, flash, request
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime, date
 from flask_wtf import FlaskForm
-from datetime import datetime
+
 
 
 # Create a flask instance
@@ -65,6 +66,12 @@ class PasswordForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
     pw_hash = PasswordField("Wachtwoord", validators=[DataRequired()])
     submit = SubmitField("Verstuur")
+
+# JSON route
+@app.route('/date')
+def get_current_date():
+    return {'Date': date.today()}
+
 
 # index route
 @app.route('/index')
