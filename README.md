@@ -1,6 +1,6 @@
 # Thuisweb
 
-## summary
+## Summary
 
 The website for your home network. im following a tutorial on youtube called Flask Friday with John Elder at 
 codemy.com. (yes the guy looks a lot like the guy from breaking bad.)  
