@@ -19,10 +19,13 @@
             <br/>
         </h2>
         Bericht van: {{ post.author }}<br/>
-        {{ post.slug }} | {{ post.date_posted }}<br/>
+        {{ post.date_posted }}<br/>
         {{ post.content }}
         <br/>
         <br/>
+        <a href="{{ url_for(blog_post, id = post.id)}} " class = "btn btn-outline-succes btn-sm">
+            Ga naar bericht
+        </a>
     </div>
     <br/>
 {% endfor %}

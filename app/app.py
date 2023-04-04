@@ -258,11 +258,14 @@ def add_post():
 @app.route('/posts')
 def posts():
     posts = Posts.query.order_by(Posts.date_posted)
-
     return render_template("posts.html", posts = posts)
 
+@app.route('/posts/<int:id>')
+def blog_post(id):
+    post = Posts.query.get_or_404(id)
+    return render_template("blog_post.html", post = post)
+
 # error pages #
-    # 404 route
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
