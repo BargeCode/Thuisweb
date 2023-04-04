@@ -25,6 +25,7 @@ you can:
 - Verify a password.
 - Leave a blog- sort of - post.
 - Read the blog posts posted on the website on a dedicated page.
+- Open a singe blog post on its own page and go back to the blog-list thing. 
 
 ---
 
