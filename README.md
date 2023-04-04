@@ -24,6 +24,7 @@ you can:
 - Delete an user.
 - Verify a password.
 - Leave a blog- sort of - post.
+- Read the blog posts posted on the website on a dedicated page.
 
 ---
 
