@@ -5,7 +5,7 @@
 The website for your home network. im following a tutorial on youtube called Flask Friday with John Elder at 
 codemy.com. (yes the guy looks a lot like the guy from breaking bad.)  
 
----
+
 
 ## Hows progress?
 
@@ -27,7 +27,7 @@ you can:
 - Read the blog posts posted on the website on a dedicated page.
 - Open a singe blog post on its own page and go back to the blog-list thing. 
 
----
+
 
 ## How to install?
 The only thing you'll need is `Git` and `Docker`. Thos apps will install a clean version of the app in 2 simple steps once those apps are installed.
@@ -41,5 +41,5 @@ git clone https://github.com/BargeCode/Thuisweb.git && docker compose up -d
 [localhost:3000/index.html](localhost:3000/index.html) and take a look around
 
 
----
+
 
