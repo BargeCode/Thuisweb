@@ -23,7 +23,7 @@
         {{ post.content }}
         <br/>
         <br/>
-        <a href="{{ url_for(blog_post, id = post.id)}} " class = "btn btn-outline-succes btn-sm">
+        <a href="{{ url_for('blog_post', id=post.id)}} " class = "btn btn-succes btn-sm">
             Ga naar bericht
         </a>
     </div>
