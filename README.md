@@ -23,20 +23,23 @@ you can:
 - Edit an user.
 - Delete an user.
 - Verify a password.
-- Write, read, edit blog posts and see an overview of all posts. 
+- Leave a blog- sort of - post.
+- Read the blog posts posted on the website on a dedicated page.
+- Open a singe blog post on its own page and go back to the blog-list thing. 
 
 
-## How to install?
-The only thing you'll need is `Git` and `Docker`. Thos apps will install a clean version of the app in 2 simple steps once those apps are installed.
+
+## How to install??
+The only thing you'll need is `Git` and `Docker`. Thos apps will install a clean version of the app in 4 simple steps once those apps are installed.
 
 1. install by typing in terminal:
 ```bash
-git clone https://github.com/BargeCode/Thuisweb.git && docker compose up -d
+git clone https://github.com/BargeCode/Thuisweb.git
 ```
-
-2. Open this webpage in your internet explorer when command line says [2/2] are running:
+2. `cd` into folder
+3. Let Docker compose:
+```bash
+ docker compose up -d
+ ```
+4. Open this webpage in your internet explorer when command line says [2/2] are running:
 [localhost:3000/index.html](localhost:3000/index.html) and take a look around
-
-
-
-
