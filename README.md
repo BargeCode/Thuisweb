@@ -23,10 +23,7 @@ you can:
 - Edit an user.
 - Delete an user.
 - Verify a password.
-- Leave a blog- sort of - post.
-- Read the blog posts posted on the website on a dedicated page.
-- Open a singe blog post on its own page and go back to the blog-list thing. 
-
+- Write, read, edit blog posts and see an overview of all posts. 
 
 
 ## How to install?
