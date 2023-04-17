@@ -29,6 +29,9 @@
         <a href="{{ url_for('edit_post', id=post.id)}} " class = "btn btn-outline-success btn-sm">
             Bewerken
         </a>
+        <a href="{{ url_for('delete_post', id=post.id)}}" class="btn btn-outline-danger btn-sm">
+            Verwijderen
+        </a>
     </div>
     <br/>
 {% endfor %}
