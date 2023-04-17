@@ -1,7 +1,7 @@
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
+from flask import Flask, render_template, flash, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import DataRequired, equal_to, Length
-from flask import Flask, render_template, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from wtforms.widgets import TextArea
 from datetime import datetime, date
@@ -130,6 +130,7 @@ def add_user():
 def update(id):
     form = UserForm()
     name_to_update = Gebruikers.query.get_or_404(id)
+    gebruikers = Gebruikers.query.order_by(Gebruikers.dates)
     if request.method == "POST":
         name_to_update.name = request.form['name']
         name_to_update.email = request.form['email']
@@ -140,21 +141,29 @@ def update(id):
             return render_template(
                 'update.html',
                 form=form,
-                name_to_update = name_to_update
+                name_to_update = name_to_update,
+                id = id,
+                gebruikers = gebruikers
                 )
         except:
             flash("Wooooops.. iets ging niet goed.")
             return render_template(
                 'update.html',
                 form=form,
-                name_to_update = name_to_update
+                name_to_update = name_to_update,
+                id = id,
+                gebruikers = gebruikers
                 )
     else: 
+        form.name.data = name_to_update.name
+        form.email.data = name_to_update.email
+        form.favo_kl.data = name_to_update.favo_kl
         return render_template(
             'update.html',
             form=form,
             name_to_update = name_to_update,
-            id = id
+            id = id,
+            gebruikers = gebruikers
             )
 
 @app.route('/delete/<int:id>')
@@ -181,7 +190,6 @@ def delete(id):
         name = name,
         gebruikers = gebruikers
         )
-
 
 # user route
 @app.route('/user/<name>')
@@ -264,6 +272,41 @@ def posts():
 def blog_post(id):
     post = Posts.query.get_or_404(id)
     return render_template("blog_post.html", post = post)
+
+@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+def edit_post(id):
+    post = Posts.query.get_or_404(id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.author = form.author.data
+        post.slug = form.slug.data
+        post.content = form.content.data
+        db.session.add(post)
+        db.session.commit()
+        flash("Updated")
+        return redirect(url_for('blog_post', id=post.id))
+    
+    form.title.data = post.title
+    form.author.data = post.author
+    form.slug.data = post.slug
+    form.content.data = post.content
+    return render_template('edit_post.html', form = form)
+
+@app.route('/posts/delete/<int:id>')
+def delete_post(id):
+    post_to_delete = Posts.query.get_or_404(id)
+
+    try:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        flash("Bericht verwijderd.")
+        posts = Posts.query.order_by(Posts.date_posted)
+        return render_template("posts.html", posts = posts)
+    except:
+        flash("Whoopsie, er is een probleem opgetreden met het verwijderen van het bericht.")
+        posts = Posts.query.order_by(Posts.date_posted)
+        return render_template("posts.html", posts = posts)
 
 # error pages #
 @app.errorhandler(404)
