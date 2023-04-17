@@ -22,6 +22,7 @@
                 <td>
                     {{ gebruiker.id }} 
                     - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - {{ gebruiker.username }}
                     - {{ gebruiker.email }}
                     - {{ gebruiker.favo_kl }}
                     - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a>
@@ -75,6 +76,7 @@
                 <td>
                     {{ gebruiker.id }} 
                     - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - {{ gebruiker.username }}
                     - {{ gebruiker.email }}
                     - {{ gebruiker.favo_kl }}
                     - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Delete </a>
