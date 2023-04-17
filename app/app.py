@@ -273,8 +273,20 @@ def test_pw():
         passed = passed
     )
 
+# All posts
+@app.route('/posts')
+def posts():
+    posts = Posts.query.order_by(Posts.date_posted)
+    return render_template("posts.html", posts = posts)
+
+# Specific post
+@app.route('/posts/<int:id>')
+def blog_post(id):
+    post = Posts.query.get_or_404(id)
+    return render_template("blog_post.html", post = post)
+
 # Add post route
-@app.route('/add-post', methods=['GET', 'POST'])
+@app.route('/posts/add-post', methods=['GET', 'POST'])
 def add_post():
     form = PostForm()
 
@@ -294,18 +306,6 @@ def add_post():
         flash('Posted!')
 
     return render_template("add_post.html", form = form)
-
-# All posts
-@app.route('/posts')
-def posts():
-    posts = Posts.query.order_by(Posts.date_posted)
-    return render_template("posts.html", posts = posts)
-
-# Specific post
-@app.route('/posts/<int:id>')
-def blog_post(id):
-    post = Posts.query.get_or_404(id)
-    return render_template("blog_post.html", post = post)
 
 # Edit post
 @app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
