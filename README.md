@@ -6,7 +6,7 @@
 2. [How's progress?](#hows-progress)
     * [Technical](#technical)
     * [Functionality](#functionality)
-3. [Current pages](#current-pages)
+3. [Current pages](#current-pagesroutes)
 4. [How to install?](#how-to-install)
 5. [How to un-install?](#how-to-un-install)
 6. [If something is missing](#if-something-is-wrong-or-missing)
@@ -70,7 +70,8 @@ codemy.com. (yes the guy looks a lot like the guy from breaking bad). Nonetheles
 
 [^1]: K.K.D.W.D. is a dutch abbreviation for a saying. The saying: *"Kind Kan De Was Doen"* translated to English means: *"Child can do the laundry"*. Probably makes no sense but it means that its so easy, a child can do it. 
 
-1. install by typing in terminal: [^2][^2]: Works on Mac.
+1. install by typing in terminal: [^2]
+[^2]: Works on Mac.
 ```bash
 git clone https://github.com/BargeCode/Thuisweb.git
 ```
