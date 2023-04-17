@@ -1,7 +1,7 @@
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, ValidationError
+from flask import Flask, render_template, flash, request, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms.validators import DataRequired, equal_to, Length
-from flask import Flask, render_template, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from wtforms.widgets import TextArea
 from datetime import datetime, date
@@ -264,6 +264,29 @@ def posts():
 def blog_post(id):
     post = Posts.query.get_or_404(id)
     return render_template("blog_post.html", post = post)
+
+@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+def edit_post(id):
+    post = Posts.query.get_or_404(id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.author = form.author.data
+        post.slug = form.slug.data
+        post.content = form.content.data
+        db.session.add(post)
+        db.session.commit()
+        flash("Updated")
+        return redirect(url_for('blog_post', id=post.id))
+    
+    form.title.data = post.title
+    form.author.data = post.author
+    form.slug.data = post.slug
+    form.content.data = post.content
+    return render_template('edit_post.html', form = form)
+
+
+
 
 # error pages #
 @app.errorhandler(404)
