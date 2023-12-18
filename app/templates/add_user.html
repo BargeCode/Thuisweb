@@ -4,6 +4,8 @@
 
 
 {% for message in get_flashed_messages() %}
+    <img src="{{ url_for('static', filename='images/happy_face.jpg')}}" width=1000>
+    <br/>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Sluiten"></button>
@@ -22,6 +24,7 @@
                 <td>
                     {{ gebruiker.id }} 
                     - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - {{ gebruiker.username }}
                     - {{ gebruiker.email }}
                     - {{ gebruiker.favo_kl }}
                     - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a>
