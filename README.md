@@ -38,6 +38,7 @@ codemy.com. (yes the guy looks a lot like the guy from breaking bad). Nonetheles
 - Delete an user.
 - Verify a password.
 - Login and logout. 
+- Acces a dashboard page, - only when logged on! - 
 
 ### *Blogwise you can:*
 - Leave a blog- sort of - post.
