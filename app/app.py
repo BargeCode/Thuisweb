@@ -116,7 +116,7 @@ def login():
         if user:
             if check_password_hash(user.pw_hash, form.password.data):
                 login_user(user)
-                flash("ingelogd!")
+                flash("Ingelogd!")
                 return redirect(url_for('dashboard'))
             else:
                 flash("gebruiker/wachtwoord combi niet bekend")
@@ -185,6 +185,7 @@ def update(id):
     gebruikers = Gebruikers.query.order_by(Gebruikers.dates)
     if request.method == "POST":
         name_to_update.name = request.form['name']
+        name_to_update.username = request.form['username']
         name_to_update.email = request.form['email']
         name_to_update.favo_kl = request.form['favo_kl']
         try:
