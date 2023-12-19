@@ -13,24 +13,36 @@
 {% endfor %}
 
 
-{% if name %}
+{% if current_user.is_authenticated %}
     <h1>
         Gebruikers.
     </h1>
     <br/>
-    <table class="table table-hover table-bordered">
-        {% for gebruiker in gebruikers %}
-            <tr>
-                <td>
-                    {{ gebruiker.id }} 
-                    - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
-                    - {{ gebruiker.username }}
-                    - {{ gebruiker.email }}
-                    - {{ gebruiker.favo_kl }}
-                    - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a>
-                </td>
-            </tr>
-        {% endfor %}
+
+    <table class="table caption-top">
+        <caption>Gebruikers</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Naam</th>
+            <th scope="col">Gebruikersnaam</th>
+            <th scope="col">Email</th>
+            <th scope="col">Favoriete kleur</th>
+            <th scope="col">Verwijderen</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for gebruiker in gebruikers %}
+                <tr>
+                    <th scope="row">{{ gebruiker.id }}</th>
+                    <td><a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a></td>
+                    <td>{{ gebruiker.username }}</td>
+                    <td>{{ gebruiker.email }}</td>
+                    <td>{{ gebruiker.favo_kl }}</td>
+                    <td><a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
 {% else %}
     <h1>
@@ -88,21 +100,7 @@
         </form>
     </div>
 
-    <br/><br/><br/>
-    <table class="table table-hover table-bordered">
-        {% for gebruiker in gebruikers %}
-            <tr>
-                <td>
-                    {{ gebruiker.id }} 
-                    - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
-                    - {{ gebruiker.username }}
-                    - {{ gebruiker.email }}
-                    - {{ gebruiker.favo_kl }}
-                    - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Delete </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <br/>
 {% endif %}
  
 {% endblock %}
