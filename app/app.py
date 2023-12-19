@@ -131,7 +131,7 @@ def login():
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
-    logout_user
+    logout_user()
     flash('Je bent uitgelogd!')
     return redirect(url_for('login'))
 

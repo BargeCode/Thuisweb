@@ -10,13 +10,31 @@
     </div>
 {% endfor %}
 
-    <h1>
+    <h2>
         Dashboard.
-    </h1>
+    </h2>
     <br/>
-    <p>Je bent ingelogd!</p>
-    <a href="{{ url_for('logout') }}" class="btn btn-outline-danger"> 
-        Uitloggen 
-    </a>
+    <div class="card">
+        <div class="card-header">
+            {{ current_user.name }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Welkom. Dit is je Dashboard</h5>
+            <p class="card-text">
+                <strong>Naam: </strong>{{ current_user.name }}</br>
+                <strong>gebruikersnaam: </strong>{{ current_user.username }}</br>
+                <strong># : </strong>{{ current_user.id }}</br>
+                <strong>Email: </strong>{{ current_user.email }}</br>
+                <strong>Favoriete kleur: </strong>{{ current_user.favo_kl }}</br>
+                <strong>Lid sinds: </strong>{{ current_user.dates }}</br>    
+            </p>
+            <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Uitloggen</a>
+        </div>
+    </div>
+    <br/><br/>
+
+
+
+
 
 {% endblock %}
