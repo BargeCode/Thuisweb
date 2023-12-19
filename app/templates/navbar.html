@@ -18,7 +18,17 @@
                         <a class="nav-link active" aria-current="page" href="{{ url_for('logout')}}">
                             Logout
                         </a>
-                    </li>                
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('add_post')}}">
+                            Bericht plaatsen
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('posts')}}">
+                            Berichten
+                        </a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url_for('login')}}">
@@ -31,39 +41,6 @@
                         </a>
                     </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('name')}}">
-                        Naam
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('add_post')}}">
-                        Bericht plaatsen
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('posts')}}">
-                        Berichten
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profielen
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ url_for('user', name='John')}}">
-                                John
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="{{ url_for('user', name='Doe')}}">
-                                Doe
-                            </a>
-                        </li>
-                    </ul>
-                </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="Zoeken" placeholder="Zoeken" aria-label="Zoeken">

@@ -179,6 +179,7 @@ def add_user():
 
 # Update user
 @app.route('/user/update/<int:id>', methods=['GET', 'POST'])
+@login_required
 def update(id):
     form = UserForm()
     name_to_update = Gebruikers.query.get_or_404(id)
@@ -221,6 +222,7 @@ def update(id):
 
 # Delete user
 @app.route('/user/delete/<int:id>')
+@login_required
 def delete(id):
     user_to_delete = Gebruikers.query.get_or_404(id)
     name = None
@@ -288,6 +290,7 @@ def blog_post(id):
 
 # Add post route
 @app.route('/posts/add-post', methods=['GET', 'POST'])
+@login_required
 def add_post():
     form = PostForm()
 
@@ -310,6 +313,7 @@ def add_post():
 
 # Edit post
 @app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_post(id):
     post = Posts.query.get_or_404(id)
     form = PostForm()
@@ -331,6 +335,7 @@ def edit_post(id):
 
 # Delete post
 @app.route('/posts/delete/<int:id>')
+@login_required
 def delete_post(id):
     post_to_delete = Posts.query.get_or_404(id)
 
