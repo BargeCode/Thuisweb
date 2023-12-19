@@ -30,49 +30,28 @@ codemy.com. (yes the guy looks a lot like the guy from breaking bad). Nonetheles
 
 ## *Functionality:*
 
-&nbsp;&nbsp;&nbsp;&nbsp;I am adding, Functionality wise, more and more each episode. It's a bit chaotic so to speak. I already know what I want to delete because of what want from the website but I don't know if John uses it in a later episode. So I will add everything like John does with his course. And in the end I'll delete the stuff I dont need. 
+&nbsp;&nbsp;&nbsp;&nbsp;I am adding, Functionality wise, more and more each episode. It's a bit chaotic so to speak. I already know what I want to delete because of what I want from the website but I don't know if John uses it in a later episode. So I will add everything like John does with his course. And in the end I'll delete the stuff I dont need and try to add stuff i would like to add. 
 
-### *Userwise you can:*
-- Add an user's name, email, favorite color, and a (hashed) password is stored.
-- Edit an user.
-- Delete an user.
-- Verify a password.
-- Login and logout. 
-- Acces a dashboard page, - only when logged on! - 
+### *Userwise you have:*
+- The possibilty to create a profile with password.
+- Edit the profile.
+- Delete the profile.
+- A table where you can see the other user accounts.
+
 
 ### *Blogwise you can:*
 - Leave a blog- sort of - post.
 - Read the blog posts posted on the website on a dedicated page.
 - Open a singe blog post on its own page and go back to the blog-list thing. 
-<br><br><br>
-# Current pages/routes:
-| website.com/...      | /...     |
-|-----------|----------|
-| Index     |          |
-| Date      |          |
-| Login     |          |
-| Logout    |          |
-| Dashboard |          |
-| User      | Add      |
-|           | Update   |
-|           | Delete   |
-| Test_pw   |          |
-| Posts     | Specific |
-|           | Add      |
-|           | Edit     |
-|           | Delete   |
-| Error     | 404      |
-|           | 500      |
+
 <br><br><br>
 
 # *How to install??*
 &nbsp;&nbsp;&nbsp;&nbsp;The only thing you'll need is `Git` and `Docker`. Those apps will install a clean version of the app in 4 simple steps once those apps are installed. K.K.D.W.D.[^1]
-<br><br>
-
-[^1]: K.K.D.W.D. is a dutch abbreviation for a saying. The saying: *"Kind Kan De Was Doen"* translated to English means: *"Child can do the laundry"*. Probably makes no sense but it means that its so easy, a child can do it. 
+<br>
+<br>
 
 1. install by typing in terminal: [^2]
-[^2]: Works on Mac.
 ```bash
 git clone https://github.com/BargeCode/Thuisweb.git
 ```
@@ -100,3 +79,6 @@ docker image rmi thuisweb-app mysql
 # *If something is wrong or missing.*
 
 &nbsp;&nbsp;&nbsp;&nbsp;Please feel free to open an issue ticket. I will look into it and ofcourse... try to fix it. 
+
+[^1]: K.K.D.W.D. is a dutch abbreviation for a saying. The saying: *"Kind Kan De Was Doen"* translated to English means: *"Child can do the laundry"*. Probably makes no sense but it means that its so easy, a child can do it. 
+[^2]: Works on Mac and Linux.

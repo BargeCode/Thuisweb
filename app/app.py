@@ -210,6 +210,7 @@ def update(id):
                 )
     else: 
         form.name.data = name_to_update.name
+        form.username.data = name_to_update.username
         form.email.data = name_to_update.email
         form.favo_kl.data = name_to_update.favo_kl
         return render_template(
