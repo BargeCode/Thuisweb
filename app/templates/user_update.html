@@ -21,11 +21,11 @@
             <tr>
                 <td>
                     {{ gebruiker.id }} 
-                    - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - <a href="{{ url_for('user_update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
                     - {{ gebruiker.username }}
                     - {{ gebruiker.email }}
                     - {{ gebruiker.favo_kl }}
-                    - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a>
+                    - <a href="{{ url_for('user_delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a>
                 </td>
             </tr>
         {% endfor %}
@@ -36,7 +36,7 @@
     </h1>
     <br/>
     <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-        <form action="/update/{{ name_to_update.id }}" method="POST">
+        <form action="/user/update/{{ name_to_update.id }}" method="POST">
             {{ form.hidden_tag() }}
             {{ form.name.label(
                 class="form-label"
@@ -69,7 +69,7 @@
             {{ form.submit(
                 class="btn btn-success"
             ) }}
-            <a href="{{ url_for('delete', id=id)}}" class="btn btn-danger"> 
+            <a href="{{ url_for('user_delete', id=id)}}" class="btn btn-danger"> 
                 Verwijderen 
             </a>
 
@@ -82,11 +82,11 @@
             <tr>
                 <td>
                     {{ gebruiker.id }} 
-                    - <a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
+                    - <a href="{{ url_for('user_update', id=gebruiker.id)}}">{{ gebruiker.name }}</a>
                     - {{ gebruiker.username }}
                     - {{ gebruiker.email }}
                     - {{ gebruiker.favo_kl }}
-                    - <a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Delete </a>
+                    - <a href="{{ url_for('user_delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Delete </a>
                 </td>
             </tr>
         {% endfor %}
