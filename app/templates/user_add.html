@@ -35,11 +35,11 @@
             {% for gebruiker in gebruikers %}
                 <tr>
                     <th scope="row">{{ gebruiker.id }}</th>
-                    <td><a href="{{ url_for('update', id=gebruiker.id)}}">{{ gebruiker.name }}</a></td>
+                    <td><a href="{{ url_for('user_update', id=gebruiker.id)}}">{{ gebruiker.name }}</a></td>
                     <td>{{ gebruiker.username }}</td>
                     <td>{{ gebruiker.email }}</td>
                     <td>{{ gebruiker.favo_kl }}</td>
-                    <td><a href="{{ url_for('delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a></td>
+                    <td><a href="{{ url_for('user_delete', id=gebruiker.id)}}" class="btn btn-outline-danger btn-sm"> Del </a></td>
                 </tr>
             {% endfor %}
         </tbody>
