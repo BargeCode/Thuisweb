@@ -29,6 +29,11 @@
                             Berichten
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('add_user')}}">
+                            Gebruikers
+                        </a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url_for('login')}}">
