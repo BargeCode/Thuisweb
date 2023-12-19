@@ -29,7 +29,7 @@
                 <strong>Lid sinds: </strong>{{ current_user.dates }}</br>    
             </p>
             <a href="{{ url_for('update', id=current_user.id)}}" class="btn btn-succes btn-sm">Bewerken</a>
-            <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm">Uitloggen</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-warning btn-sm">Uitloggen</a>
             <a href="{{ url_for('delete', id=current_user.id)}}" class="btn btn-danger">Profiel verwijderen</a>
         </div>
     </div>
