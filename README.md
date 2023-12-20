@@ -6,10 +6,9 @@
 2. [How's progress?](#hows-progress)
     * [Technical](#technical)
     * [Functionality](#functionality)
-3. [Current pages](#current-pagesroutes)
-4. [How to install?](#how-to-install)
-5. [How to un-install?](#how-to-un-install)
-6. [If something is missing](#if-something-is-wrong-or-missing)
+3. [How to install?](#how-to-install)
+4. [How to un-install?](#how-to-un-install)
+5. [If something is missing](#if-something-is-wrong-or-missing)
 
 
 ## *Summary*
