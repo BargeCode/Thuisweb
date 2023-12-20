@@ -60,8 +60,10 @@ git clone https://github.com/BargeCode/Thuisweb.git
 ```bash
  docker compose up -d
  ```
-4. Open this webpage in your internet explorer when command line says [2/2] are running:
-   `localhost:3000/index.html` and take a look around!
+4. Open this webpage in your internet explorer when command line says [2/2] are running and take a look around!:
+```
+localhost:3000/index.html
+``` 
 
 # *How to Un-install??*
 
